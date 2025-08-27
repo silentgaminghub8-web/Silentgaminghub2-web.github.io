@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Gaming Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0e2a 0%, #1a1a40 100%);
+            color: #fff;
+            line-height: 1.6;
+            padding-bottom: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(10, 12, 35, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 25px rgba(0, 132, 255, 0.5);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #0066cc, #00aaff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #00aaff, #0066cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #00aaff;
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+        }
+
+        /* Box Styles */
+        .box {
+            background: rgba(15, 20, 50, 0.7);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, #0066cc, #00aaff, #0066cc);
+            border-radius: 12px;
+            opacity: 0.3;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4);
+        }
+
+        .box:active {
+            transform: translateY(2px);
+        }
+
+        .box h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .countdown-item {
+            background: rgba(0, 50, 100, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00aaff;
+            text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #aaccff;
+        }
+
+        /* Social Logos */
+        .social-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .social-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+        }
+
+        .social-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+        }
+
+        .whatsapp {
+            background: linear-gradient(145deg, #25D366, #128C7E);
+        }
+
+        .telegram {
+            background: linear-gradient(145deg, #0088cc, #004c75);
+        }
+
+        /* Special Glowing Box */
+        .glowing-box {
+            animation: glow 2s infinite alternate;
+            text-align: center;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(0, 132, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(0, 132, 255, 0.8), 0 0 40px rgba(0, 200, 255, 0.6);
+            }
+        }
+
+        .contact-info {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .contact-info li {
+            margin: 15px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: #00aaff;
+            width: 30px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: rgba(10, 12, 35, 0.95);
+            border-top: 1px solid rgba(0, 200, 255, 0.3);
+            box-shadow: 0 -5px 25px rgba(0, 132, 255, 0.3);
+        }
+
+        .footer p {
+            margin: 10px 0;
+            color: #aaccff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .box h2 {
+                font-size: 1.5rem;
+            }
+            
+            .social-logos {
+                gap: 20px;
+            }
+            
+            .social-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Title -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">SG</div>
+            <h1 class="title">SILENT GAMING HUB</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Gaming Hub Features</h2>
+
+        <!-- Tournaments Box -->
+        <div class="box">
+            <h2>Tournaments of Free Fire</h2>
+            <p>Join our exciting Free Fire tournaments and showcase your skills against the best players. Compete for amazing prizes and glory!</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <p>Tournament ends on: <strong>October 1, 2025</strong></p>
+        </div>
+
+        <!-- 1v1 Challenge Box -->
+        <div class="box">
+            <h2>Challenge Each Other for 1v1</h2>
+            <p>Test your skills in intense 1v1 battles. Challenge other players and climb up the ranks to become the ultimate champion!</p>
+        </div>
+
+        <!-- Group Chat Box -->
+        <div class="box">
+            <h2>Open Group Chat</h2>
+            <p>Join our community chat to discuss strategies, find teammates, and stay updated with the latest gaming news.</p>
+            
+            <div class="social-logos">
+                <a href="https://wa.me/yourlink" class="social-logo whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/yourlink" class="social-logo telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Earn by Uploading Box -->
+        <div class="box">
+            <h2>You Can Earn by Uploading Content</h2>
+            <p>Share your gaming clips, tutorials, and highlights with our community and earn rewards for your content.</p>
+            <p class="subtext">"Earn ₹10–50 per short video"</p>
+        </div>
+
+        <!-- Special Contact Box -->
+        <div class="box glowing-box">
+            <h2>Contact Us</h2>
+            <ul class="contact-info">
+                <li><i class="fab fa-whatsapp"></i> WhatsApp: +91 7037843807</li>
+                <li><i class="fab fa-telegram"></i> Telegram: <a href="https://t.me/+917037843807" style="color: #00aaff;">https://t.me/+917037843807</a></li>
+                <li><i class="fab fa-instagram"></i> Instagram: @silent_gaming_hub</li>
+            </ul>
+            <p>"For joining, DM us on WhatsApp, Telegram, or Instagram."</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Silent Gaming Hub. All rights reserved.</p>
+        <p>Designed for gamers by gamers</p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date('October 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = endDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('days').innerHTML = '00';
+                document.getElementById('hours').innerHTML = '00';
+                document.getElementById('minutes').innerHTML = '00';
+                document.getElementById('seconds').innerHTML = '00';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Add click animation to all boxes
+        document.querySelectorAll('.box').forEach(box => {
+            box.addEventListener('click', function() {
+                this.style.transform = 'translateY(2px)';
+                this.style.boxShadow = '0 2px 10px rgba(0, 132, 255, 0.3)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
