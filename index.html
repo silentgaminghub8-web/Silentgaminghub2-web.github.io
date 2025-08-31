@@ -3,391 +3,789 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silent Gaming Hub</title>
+    <title>Silent Gaming Hub Tournaments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Russo+One&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Oxanium', cursive;
+        }
+
+        :root {
+            --primary-blue: #0066ff;
+            --sky-blue: #00aeff;
+            --purple: #8c52ff;
+            --dark-bg: #0a0a1a;
+            --card-bg: #12122a;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --accent: #ff00d6;
+            --gradient: linear-gradient(45deg, var(--primary-blue), var(--purple), var(--accent));
         }
 
         body {
-            background: linear-gradient(135deg, #0c0e2a 0%, #1a1a40 100%);
-            color: #fff;
-            line-height: 1.6;
-            padding-bottom: 20px;
+            background: linear-gradient(to bottom, var(--dark-bg), #0d1029);
+            color: var(--text-light);
             min-height: 100vh;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Header Styles */
-        .header {
-            background: rgba(10, 12, 35, 0.95);
-            padding: 15px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 25px rgba(0, 132, 255, 0.5);
-            border-bottom: 1px solid rgba(0, 200, 255, 0.3);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(145deg, #0066cc, #00aaff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 0 15px rgba(0, 200, 255, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #00aaff, #0066cc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-            letter-spacing: 2px;
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
+        header {
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: #00aaff;
-            text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
-        }
-
-        /* Box Styles */
-        .box {
-            background: rgba(15, 20, 50, 0.7);
-            border: 1px solid rgba(0, 150, 255, 0.3);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            padding: 40px 20px;
             position: relative;
             overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') center/cover;
+            box-shadow: 0 5px 25px rgba(0, 119, 255, 0.4);
+            border: 2px solid var(--primary-blue);
         }
 
-        .box::before {
+        header::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.6;
             z-index: -1;
-            background: linear-gradient(45deg, #0066cc, #00aaff, #0066cc);
-            border-radius: 12px;
-            opacity: 0.3;
         }
 
-        .box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4);
+        .header-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-shadow: 0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .box:active {
-            transform: translateY(2px);
-        }
-
-        .box h2 {
-            color: #00aaff;
+        .header-subtitle {
+            font-size: 1.6rem;
             margin-bottom: 20px;
+            color: var(--sky-blue);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 174, 255, 0.5);
+        }
+
+        /* Tournament Cards */
+        .tournaments-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .tournaments-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .tournament-card {
+            background: linear-gradient(145deg, var(--card-bg), #1a1a3a);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 110, 255, 0.3);
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(84, 10, 216, 0.4);
+        }
+
+        .tournament-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .tournament-card.highlighted {
+            border: 2px solid var(--accent);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(255, 0, 214, 0.5);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(255, 0, 214, 0.8), 0 0 40px rgba(255, 0, 214, 0.6);
+            }
+        }
+
+        .card-title {
             font-size: 1.8rem;
-            text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+            color: var(--sky-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0, 174, 255, 0.5);
+        }
+
+        .card-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .card-detail i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        .prize-distribution {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed rgba(0, 110, 255, 0.3);
+        }
+
+        .prize-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .prize-item:last-child {
+            border-bottom: none;
         }
 
         /* Countdown Timer */
         .countdown {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            justify-content: space-between;
+            margin: 25px 0;
+            text-align: center;
         }
 
         .countdown-item {
-            background: rgba(0, 50, 100, 0.5);
-            padding: 15px;
+            flex: 1;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            min-width: 80px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+            margin: 0 5px;
+            border: 1px solid rgba(0, 110, 255, 0.2);
         }
 
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #00aaff;
-            text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--sky-blue);
+            text-shadow: 0 0 8px var(--primary-blue);
+            font-family: 'Russo One', sans-serif;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
-            color: #aaccff;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-top: 5px;
         }
 
-        /* Social Logos */
-        .social-logos {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-        }
-
-        .social-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
-        }
-
-        .social-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
-        }
-
-        .whatsapp {
-            background: linear-gradient(145deg, #25D366, #128C7E);
-        }
-
-        .telegram {
-            background: linear-gradient(145deg, #0088cc, #004c75);
-        }
-
-        /* Special Glowing Box */
-        .glowing-box {
-            animation: glow 2s infinite alternate;
+            border: none;
+            cursor: pointer;
             text-align: center;
-            padding: 30px;
-            margin: 40px 0;
+            margin: 5px;
+            font-family: 'Russo One', sans-serif;
         }
 
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 20px rgba(0, 132, 255, 0.5);
-            }
-            to {
-                box-shadow: 0 0 30px rgba(0, 132, 255, 0.8), 0 0 40px rgba(0, 200, 255, 0.6);
-            }
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 5px 15px rgba(55, 84, 255, 0.4);
         }
 
-        .contact-info {
-            list-style: none;
-            margin: 20px 0;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(55, 84, 255, 0.6);
+            background: linear-gradient(45deg, var(--purple), var(--accent), var(--primary-blue));
         }
 
-        .contact-info li {
-            margin: 15px 0;
-            font-size: 1.2rem;
+        .btn-secondary {
+            background: linear-gradient(to right, var(--purple), var(--accent));
+            color: white;
+            box-shadow: 0 5px 15px rgba(140, 82, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(140, 82, 255, 0.6);
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .button-group {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            margin-top: 20px;
         }
 
-        .contact-info i {
-            color: #00aaff;
-            width: 30px;
+        /* How It Works Section */
+        .how-it-works {
+            background: linear-gradient(to right, rgba(26, 26, 58, 0.8), rgba(40, 40, 80, 0.8));
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 110, 255, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--sky-blue);
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0, 174, 255, 0.5);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .steps {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 110, 255, 0.2);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 110, 255, 0.3);
+        }
+
+        .step i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--sky-blue);
+            text-shadow: 0 0 5px rgba(0, 174, 255, 0.3);
+        }
+
+        .youtube-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--sky-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
         }
 
         /* Footer */
-        .footer {
+        footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             margin-top: 50px;
-            background: rgba(10, 12, 35, 0.95);
-            border-top: 1px solid rgba(0, 200, 255, 0.3);
-            box-shadow: 0 -5px 25px rgba(0, 132, 255, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 110, 255, 0.2);
         }
 
-        .footer p {
-            margin: 10px 0;
-            color: #aaccff;
+        .footer-text {
+            color: var(--sky-blue);
+            font-size: 0.9rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 1.8rem;
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(to bottom, #1a1a3a, #0d0d21);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(140, 82, 255, 0.5);
+            position: relative;
+            border: 2px solid var(--purple);
+            animation: modalAppear 0.5s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
             }
-            
-            .countdown {
-                flex-wrap: wrap;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            .box h2 {
-                font-size: 1.5rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-title {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(255, 0, 214, 0.5);
+        }
+
+        .modal-text {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
             }
-            
-            .social-logos {
-                gap: 20px;
+            10% {
+                opacity: 1;
             }
-            
-            .social-logo {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+            90% {
+                opacity: 1;
             }
+            100% {
+                transform: translateY(-1000%) translateX(100%) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* YouTube Icon */
+        .youtube-icon {
+            color: #FF0000;
+            margin-right: 5px;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float i {
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <!-- Header with Logo and Title -->
-    <header class="header">
-        <div class="logo-container">
-            <div class="logo">SG</div>
-            <h1 class="title">SILENT GAMING HUB</h1>
-        </div>
-    </header>
-
+    <div class="particles" id="particles"></div>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917037843807?text=Hi%20I%20have%20a%20question%20about%20your%20tournaments" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <div class="container">
-        <h2 class="section-title">Gaming Hub Features</h2>
+        <header>
+            <h1 class="header-title">Silent Gaming Hub Tournaments</h1>
+            <p class="header-subtitle">हर हफ़्ते जीतने का नया मौका</p>
+        </header>
 
-        <!-- Tournaments Box -->
-        <div class="box">
-            <h2>Tournaments of Free Fire</h2>
-            <p>Join our exciting Free Fire tournaments and showcase your skills against the best players. Compete for amazing prizes and glory!</p>
-            
-            <div class="countdown">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Days</div>
+        <div class="tournaments-container">
+            <!-- Free Tournament Card -->
+            <div class="tournament-card">
+                <h2 class="card-title">Weekly Free Tournament</h2>
+                
+                <div class="card-detail">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Every Sunday at 5:00 PM</span>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
+                
+                <div class="card-detail">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Entry Fee: Free</span>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
+                
+                <div class="card-detail">
+                    <i class="fas fa-trophy"></i>
+                    <span>Prize Pool: ₹500</span>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
+                
+                <div class="countdown" id="freeSunday">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="freeDays">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="freeHours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="freeMinutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="freeSeconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="https://wa.me/917037843807?text=Hi%20I%20want%20to%20enter%20in%20free%20Weekly%20tournament" class="btn btn-primary">Join Now via WhatsApp</a>
                 </div>
             </div>
-            
-            <p>Tournament start on: <strong>October 1, 2025</strong></p>
-        </div>
 
-        <!-- 1v1 Challenge Box -->
-        <div class="box">
-            <h2>Challenge Each Other for 1v1</h2>
-            <p>Test your skills in intense 1v1 battles. Challenge other players and climb up the ranks to become the ultimate champion!</p>
-        </div>
-
-        <!-- Group Chat Box -->
-        <div class="box">
-            <h2>Open Group Chat</h2>
-            <p>Join our community chat to discuss strategies, find teammates, and stay updated with the latest gaming news.</p>
-            
-            <div class="social-logos">
-                <a href="https://wa.me/yourlink" class="social-logo whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/yourlink" class="social-logo telegram" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
+            <!-- Grand Tournament Card -->
+            <div class="tournament-card highlighted">
+                <h2 class="card-title">Grand Tournament</h2>
+                
+                <div class="card-detail">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>1 December 2025 at 5:00 PM</span>
+                </div>
+                
+                <div class="card-detail">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Entry Fee: ₹250</span>
+                </div>
+                
+                <div class="card-detail">
+                    <i class="fas fa-award"></i>
+                    <span>Prize Distribution:</span>
+                </div>
+                
+                <div class="prize-distribution">
+                    <div class="prize-item">
+                        <span>1st Prize</span>
+                        <span>₹1,00,000</span>
+                    </div>
+                    <div class="prize-item">
+                        <span>2nd Prize</span>
+                        <span>₹50,000</span>
+                    </div>
+                    <div class="prize-item">
+                        <span>3rd Prize</span>
+                        <span>₹30,000</span>
+                    </div>
+                    <div class="prize-item">
+                        <span>4th Prize</span>
+                        <span>₹20,000</span>
+                    </div>
+                </div>
+                
+                <div class="countdown" id="grandOct">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="grandDays">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="grandHours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="grandMinutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="grandSeconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-secondary" id="prebookBtn">Prebook Now</button>
+                </div>
             </div>
         </div>
 
-        <!-- Earn by Uploading Box -->
-        <div class="box">
-            <h2>You Can Earn by Uploading Content</h2>
-            <p>Share your gaming clips, tutorials, and highlights with our community and earn rewards for your content.</p>
-            <p class="subtext">"Earn ₹10–50 per short video"</p>
+        <!-- How It Works Section -->
+        <div class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3 class="step-title">Weekly Tournaments</h3>
+                    <p>Free tournament every Sunday with ₹500 prize pool</p>
+                </div>
+                
+                <div class="step">
+                    <i class="fas fa-star"></i>
+                    <h3 class="step-title">Special Events</h3>
+                    <p>Big tournaments on selected dates with huge prize pools</p>
+                </div>
+                
+                <div class="step">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3 class="step-title">Instant Payments</h3>
+                    <p>Winners get direct UPI/GPay transfers immediately</p>
+                </div>
+            </div>
+
+            <a href="https://youtube.com/@silentgaminghub1?si=nvIouRoWWC3qSMYa" class="youtube-link" target="_blank">
+                <i class="fab fa-youtube youtube-icon"></i> All tournaments live on YouTube - Subscribe Now!
+            </a>
         </div>
 
-        <!-- Special Contact Box -->
-        <div class="box glowing-box">
-            <h2>Contact Us</h2>
-            <ul class="contact-info">
-                <li><i class="fab fa-whatsapp"></i> WhatsApp: +91 7037843807</li>
-                <li><i class="fab fa-telegram"></i> Telegram: <a href="https://t.me/+917037843807" style="color: #00aaff;">https://t.me/+917037843807</a></li>
-                <li><i class="fab fa-instagram"></i> Instagram: @silent_gaming_hub</li>
-            </ul>
-            <p>"For joining, DM us on WhatsApp, Telegram, or Instagram."</p>
+        <!-- Call to Action Section -->
+        <div class="button-group">
+            <a href="https://wa.me/917037843807?text=Hi%20I%20want%20to%20join%20Silent%20Gaming%20Hub" class="btn btn-primary btn-large">Message Us on WhatsApp</a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2020 Silent Gaming Hub. All rights reserved.</p>
-        <p>Designed for gamers by gamers</p>
+    <!-- Prebook Modal -->
+    <div class="modal" id="prebookModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Prebooking Starts Soon!</h2>
+            <p class="modal-text">Prebooking for the Grand Tournament will start on 1 October 2025. Message us on WhatsApp to get notified when prebooking begins!</p>
+            <a href="https://wa.me/917037843807?text=Please%20notify%20me%20when%20Grand%20Tournament%20prebooking%20starts" class="btn btn-primary">Notify Me on WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-text">© 2023 Silent Gaming Hub. All rights reserved.</p>
     </footer>
 
     <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const endDate = new Date('October 1, 2025 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = endDate - now;
+        // Create background particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
             
-            if (distance < 0) {
-                document.getElementById('days').innerHTML = '00';
-                document.getElementById('hours').innerHTML = '00';
-                document.getElementById('minutes').innerHTML = '00';
-                document.getElementById('seconds').innerHTML = '00';
-                return;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Random color from gradient
+                const colors = ['#0066ff', '#00aeff', '#8c52ff', '#ff00d6'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
             }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
         }
         
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        // Countdown timer implementation
+        function updateCountdown() {
+            // Free Sunday tournament (next Sunday)
+            const now = new Date();
+            const nextSunday = new Date();
+            nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
+            nextSunday.setHours(17, 0, 0, 0); // 5:00 PM
+            
+            // If it's already past this Sunday, set to next Sunday
+            if (now > nextSunday) {
+                nextSunday.setDate(nextSunday.getDate() + 7);
+            }
+            
+            const freeTimeRemaining = nextSunday - now;
+            
+            if (freeTimeRemaining <= 0) {
+                document.getElementById('freeSunday').innerHTML = '<div class="countdown-value">Tournament Started!</div>';
+            } else {
+                const freeDays = Math.floor(freeTimeRemaining / (1000 * 60 * 60 * 24));
+                const freeHours = Math.floor((freeTimeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const freeMinutes = Math.floor((freeTimeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const freeSeconds = Math.floor((freeTimeRemaining % (1000 * 60)) / 1000);
+                
+                document.getElementById('freeDays').textContent = freeDays.toString().padStart(2, '0');
+                document.getElementById('freeHours').textContent = freeHours.toString().padStart(2, '0');
+                document.getElementById('freeMinutes').textContent = freeMinutes.toString().padStart(2, '0');
+                document.getElementById('freeSeconds').textContent = freeSeconds.toString().padStart(2, '0');
+            }
+            
+            // Grand tournament (December 1, 2025)
+            const grandTournamentDate = new Date('December 1, 2025 17:00:00');
+            const grandTimeRemaining = grandTournamentDate - now;
+            
+            if (grandTimeRemaining <= 0) {
+                document.getElementById('grandOct').innerHTML = '<div class="countdown-value">Tournament Started!</div>';
+            } else {
+                const grandDays = Math.floor(grandTimeRemaining / (1000 * 60 * 60 * 24));
+                const grandHours = Math.floor((grandTimeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const grandMinutes = Math.floor((grandTimeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const grandSeconds = Math.floor((grandTimeRemaining % (1000 * 60)) / 1000);
+                
+                document.getElementById('grandDays').textContent = grandDays.toString().padStart(2, '0');
+                document.getElementById('grandHours').textContent = grandHours.toString().padStart(2, '0');
+                document.getElementById('grandMinutes').textContent = grandMinutes.toString().padStart(2, '0');
+                document.getElementById('grandSeconds').textContent = grandSeconds.toString().padStart(2, '0');
+            }
+        }
         
-        // Add click animation to all boxes
-        document.querySelectorAll('.box').forEach(box => {
-            box.addEventListener('click', function() {
-                this.style.transform = 'translateY(2px)';
-                this.style.boxShadow = '0 2px 10px rgba(0, 132, 255, 0.3)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                    this.style.boxShadow = '';
-                }, 100);
+        // Modal functionality
+        function setupModal() {
+            const modal = document.getElementById('prebookModal');
+            const prebookBtn = document.getElementById('prebookBtn');
+            const closeModal = document.getElementById('closeModal');
+            
+            prebookBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
             });
+            
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            setupModal();
         });
     </script>
 </body>
